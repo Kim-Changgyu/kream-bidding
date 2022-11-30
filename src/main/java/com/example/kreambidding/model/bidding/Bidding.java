@@ -6,9 +6,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(of = { "biddingId" })
 public class Bidding {
-    @EqualsAndHashCode.Include
+    @NonNull
     private final long biddingId;
     @NonNull
     private final long productId;

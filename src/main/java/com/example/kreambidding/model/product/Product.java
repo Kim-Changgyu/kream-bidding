@@ -8,9 +8,9 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(of = { "productId" })
 public class Product {
-    @EqualsAndHashCode.Include
+    @NonNull
     private final long productId;
     @NonNull
     private Category category;

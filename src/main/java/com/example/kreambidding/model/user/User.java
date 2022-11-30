@@ -6,8 +6,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode
+@EqualsAndHashCode(of = { "userId" })
 public class User {
+    @NonNull
     private final long userId;
     @NonNull
     private String userName;
