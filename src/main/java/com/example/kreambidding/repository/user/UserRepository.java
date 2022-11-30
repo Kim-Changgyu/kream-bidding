@@ -1,20 +1,9 @@
 package com.example.kreambidding.repository.user;
 
 import com.example.kreambidding.model.user.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface UserRepository {
-    User insert(User user);
-
-    List<User> findAll();
-
-    Optional<User> findById(long userId);
-
-    User update(User user);
-
-    void delete(long userId);
-
-    void deleteAll();
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
 }

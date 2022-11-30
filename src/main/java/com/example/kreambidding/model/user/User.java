@@ -2,15 +2,16 @@ package com.example.kreambidding.model.user;
 
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode(of = { "userId" })
+import javax.persistence.*;
+
+@Data
+@Entity
 public class User {
-    private final long userId;
-    @NonNull
-    private String userName;
-    @NonNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
     private String address;
 }

@@ -1,6 +1,6 @@
-CREATE TABLE if NOT EXISTS users
+CREATE TABLE if NOT EXISTS user
 (
-    user_id     BIGINT      PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    user_name   VARCHAR(50) NOT NULL,
+    id          BIGINT      PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name        VARCHAR(50) NOT NULL,
     address     VARCHAR(50) NOT NULL
 );
