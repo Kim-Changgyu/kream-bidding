@@ -8,7 +8,6 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode(of = { "userId" })
 public class User {
-    @NonNull
     private final long userId;
     @NonNull
     private String userName;
