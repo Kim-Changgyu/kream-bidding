@@ -2,27 +2,28 @@ package com.example.kreambidding.model.product;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode(of = { "productId" })
+@Data
+@Entity
 public class Product {
-    @NonNull
-    private final long productId;
-    @NonNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Category category;
-    @NonNull
+    @Column(nullable = false)
     private String brand;
-    @NonNull
-    private String productName;
-    @NonNull
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
     private String serialNumber;
     private long price;
     private String color;
     private LocalDate releasedAt;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String size;
 }
