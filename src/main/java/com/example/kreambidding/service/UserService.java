@@ -5,8 +5,10 @@ import com.example.kreambidding.model.user.User;
 import com.example.kreambidding.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
@@ -20,6 +22,7 @@ public class UserService {
     public User createUser(UserDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
+        user.setEmail(validateEmail(userDTO.getEmail()));
         user.setAddress(userDTO.getAddress());
 
         return userRepository.save(user);
@@ -33,6 +36,10 @@ public class UserService {
         return userRepository.findById(id).orElseThrow();
     }
 
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow();
+    }
+
     public User updateUser(UserDTO userDTO) {
         User user = userRepository.findById(userDTO.getId()).orElseThrow();
         user.setName(userDTO.getName() != null? userDTO.getName(): user.getName());
@@ -43,5 +50,13 @@ public class UserService {
 
     public void deleteUser(long id) {
         userRepository.deleteById(id);
+    }
+
+    private String validateEmail(String email) {
+        Assert.notNull(email, "이메일 주소는 비어있을 수 없습니다.");
+        Assert.isTrue(email.length() >= 4 && email.length() <= 50, "이메일 주소는 4자 이상 50자 미이어야 합니다.");
+        Assert.isTrue(Pattern.matches("\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b", email), "유효한 이메일 형식이 아닙니다.");
+
+        return email;
     }
 }

@@ -30,6 +30,11 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/api/v1/users/email/{email}")
+    public User getUserByEmail(@PathVariable("email") String email) {
+        return userService.getUserByEmail(email);
+    }
+
     @PutMapping("/api/v1/users")
     public User updateUser(@RequestBody UserDTO userDTO) {
         return userService.updateUser(userDTO);
