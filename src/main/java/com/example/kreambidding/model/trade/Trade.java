@@ -2,19 +2,21 @@ package com.example.kreambidding.model.trade;
 
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode(of = { "tradeId" })
+import javax.persistence.*;
+
+@Data
+@Entity
 public class Trade {
-    @NonNull
-    private final long tradeId;
-    @NonNull
-    private final long buyBiddingId;
-    @NonNull
-    private final long sellBiddingId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private long buyBiddingId;
+    @Column(nullable = false)
+    private long sellBiddingId;
+    @Column(nullable = false)
+    private long price;
     private String invoiceNumber;
-    @NonNull
+    @Column(nullable = false)
     private TradeStatus tradeStatus;
 }
