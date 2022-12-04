@@ -6,10 +6,12 @@ import com.example.kreambidding.model.product.Gender;
 import com.example.kreambidding.model.product.Product;
 import com.example.kreambidding.repository.product.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
     private final ProductRepository productRepository;
 
@@ -41,6 +43,11 @@ public class ProductService {
     public Product getProductById(long id) {
         return productRepository.findById(id).orElseThrow();
     }
+
+    public List<String> getBrands() {
+        return productRepository.findAllBrands();
+    }
+
     public Product updateProduct(ProductDTO productDTO) {
         Product product = productRepository.findById(productDTO.getId()).orElseThrow();
         product.setCategory(productDTO.getCategory() != null? productDTO.getCategory(): product.getCategory());

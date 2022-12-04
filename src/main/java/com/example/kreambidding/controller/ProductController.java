@@ -33,13 +33,18 @@ public class ProductController {
         return productService.getProducts(category, brand, keyword, gender);
     }
 
+    @GetMapping("/api/v1/products/brand")
+    public List<String> getProducts() {
+        return productService.getBrands();
+    }
+
     @GetMapping("/api/v1/products/{id}")
     public Product getProduct(@PathVariable("id") long id) {
         return productService.getProductById(id);
     }
 
     @PutMapping("/api/v1/products")
-    public Product getProduct(@RequestBody ProductDTO productDTO) {
+    public Product updateProduct(@RequestBody ProductDTO productDTO) {
         return productService.updateProduct(productDTO);
     }
 

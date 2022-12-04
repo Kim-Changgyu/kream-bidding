@@ -11,4 +11,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM product WHERE category LIKE IFNULL(:category, '%') AND brand LIKE IFNULL(:brand, '%') AND name LIKE IF(:name IS NULL, '%', CONCAT('%', :name, '%')) AND gender LIKE IFNULL(:gender, '%')", nativeQuery = true)
     List<Product> findAllByFilters(String category, String brand, String name, String gender);
+    @Query("SELECT DISTINCT p.brand FROM Product p ORDER BY p.brand ASC")
+    List<String> findAllBrands();
 }
